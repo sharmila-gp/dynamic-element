@@ -1,10 +1,10 @@
 
-var biscuit1 = {productName:"Mariegold", productId:"1001",price:100,quantity:"<input type='number' value='1' class= box1>"};
-var biscuit2 = {productName:"JimJam", productId:"1002",price:102,quantity:"<input type='number' value='1' class= box2>"};
-var biscuit3 = {productName:"Hide&Seek", productId:"1003",price:150,quantity:"<input type='number' value='1' class= box3>"};
-var biscuit4 = {productName:"Bourborn", productId:"1004",price:160,quantity:"<input type='number' value='1' class= box4>"};
-
-
+var biscuit1 = {productName:"Mariegold", productId:"1001",price:100,quantity:"<input type='number' value='3' id= 'box1'>"};
+var biscuit2 = {productName:"JimJam", productId:"1002",price:102,quantity:"<input type='number' value='3' id= 'box2'>"};
+var biscuit3 = {productName:"Hide&Seek", productId:"1003",price:150,quantity:"<input type='number' value='1' id= 'box3'>"};
+var biscuit4 = {productName:"Bourborn", productId:"1004",price:160,quantity:"<input type='number' value='1' id= 'box4'>"};
+var i=0;
+var z=0;
 tableData();
 
 function tableData()
@@ -34,17 +34,6 @@ tr4.setAttribute("id","mytr4");
 document.getElementById("mytable").appendChild(tr4);
 tableBody(biscuit4,"mytr4","box4");
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 function tableThead(){
@@ -101,23 +90,42 @@ function tableBody(objectname, idname, cname){
 	document.getElementById(idname).appendChild(td4);
 	
 	var td5=document.createElement("TD");
-	var table = document.getElementById("mytable");
-	var item=table.getElementsByClassName(cname)[0].value;
-	var node5 = item * objectname.price;
-	console.log(item);
-	td5.innerHTML = node5;
+	i++;
+	td5.setAttribute("id","mytd"+i);
 	document.getElementById(idname).appendChild(td5);
+	var item=document.getElementById(cname);
+	var node5 = item.value * objectname.price;
+	td5.innerHTML = node5;
 	}
 	
+var item1=document.getElementById("box1");
+var item2=document.getElementById("box2");
+var item3=document.getElementById("box3");
+var item4=document.getElementById("box4");
+var tdel1=document.getElementById("mytd1");
+var tdel2=document.getElementById("mytd2");
+var tdel3=document.getElementById("mytd3");
+var tdel4=document.getElementById("mytd4");
 
-function textbox(){
-	let box;
-	var z;
-	for(i=1;i<=4;i++){
-	box='box'+i;
-	z="<input type='number' value='1' class= box>";
-	}
+
+
+
+item1.addEventListener('input',multiply(item1.value,biscuit1,tdel1));
+item2.addEventListener('input',multiply(item2.value,biscuit2,tdel2));
+item3.addEventListener('input',multiply(item3.value,biscuit3,tdel3));
+item4.addEventListener('input',multiply(item4.value,biscuit4,tdel4));
+
+
+function multiply(val, obj, idna){
+let mul;
+mul=val*obj.price;
+idna.innerHTML=mul;
+console.log(mul);
+}
+
 	
-	return "<input type='number' value='1' class= box>";
+function textbox(){
+	z++;
+	return "<input type='number' value='1' id='box'+z>";
 }
 

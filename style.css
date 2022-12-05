@@ -16,3 +16,8 @@ table,td{
 td{
 	padding:10px;
 }
+
+td[colspan]{
+	font-weight:bold;
+	text-align:center;
+}

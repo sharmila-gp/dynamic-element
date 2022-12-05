@@ -1,9 +1,9 @@
 
 
-var biscuit1 = {productName:"Mariegold", productId:"1001",price:100,quantity:"<input type='number'value='1' id= 'box1' onchange = multiply('box1',biscuit1,'mytd1')>"};
-var biscuit2 = {productName:"JimJam", productId:"1002",price:102,quantity:"<input type='number' value='1'id= 'box2'onchange = multiply('box2',biscuit2,'mytd2')>"};
-var biscuit3 = {productName:"Hide&Seek", productId:"1003",price:150,quantity:"<input type='number'value='1' id= 'box3'onchange = multiply('box3',biscuit3,'mytd3')>"};
-var biscuit4 = {productName:"Bourborn", productId:"1004",price:160,quantity:"<input type='number' value='1' id= 'box4'onchange = multiply('box4',biscuit4,'mytd4')>"};
+var biscuit1 = {productName:"Mariegold", productId:"1001",price:100,quantity:"<input type='number'value='1' id= 'box1' oninput = multiply('box1',biscuit1,'mytd1',total)>"};
+var biscuit2 = {productName:"JimJam", productId:"1002",price:102,quantity:"<input type='number' value='1'id= 'box2'oninput = multiply('box2',biscuit2,'mytd2',total)>"};
+var biscuit3 = {productName:"Hide&Seek", productId:"1003",price:150,quantity:"<input type='number'value='1' id= 'box3'oninput = multiply('box3',biscuit3,'mytd3',total)>"};
+var biscuit4 = {productName:"Bourborn", productId:"1004",price:160,quantity:"<input type='number' value='1' id= 'box4'oninput = multiply('box4',biscuit4,'mytd4',total)>"};
 var i=0;
 tableData();
 
@@ -33,6 +33,26 @@ var tr4 = document.createElement("TR");
 tr4.setAttribute("id","mytr4");
 document.getElementById("mytable").appendChild(tr4);
 tableBody(biscuit4,"mytr4","box4");
+
+var tr5 = document.createElement("TR");
+tr5.setAttribute("id","mytr5");
+document.getElementById("mytable").appendChild(tr5);
+
+
+var x7 = document.createElement("TD");
+x7.setAttribute("colspan","4");
+x7.innerHTML = "TOTAL";
+document.getElementById("mytr5").appendChild(x7);
+
+var x8 = document.createElement("TD");
+x8.setAttribute("id","tot");
+var to = 0;
+for(var j=1;j<x.rows.length-1;j++){
+var xx1 = document.getElementById("mytd"+j);
+to = to +parseInt(xx1.innerHTML);
+}
+x8.innerHTML = to;
+document.getElementById("mytr5").appendChild(x8);
 }
 
 
@@ -92,13 +112,25 @@ function tableBody(objectname, idname, inputid){
 	}
 
 
-function multiply(val, obj, idna){
+function multiply(val, obj, idna,sum1){
 let mul;
 let ii = document.getElementById(val);
 let tdi = document.getElementById(idna);
 mul=ii.value*obj.price;
 tdi.innerHTML=mul;
+sum1();
 }
 	
+function total(){
+var sum = 0;
+var table = document.getElementById("mytable");
+for(var j=1;j<table.rows.length-1;j++){
+var xx1 = document.getElementById("mytd"+j);
+sum = sum +parseInt(xx1.innerHTML);
+}
+
+totalValue = document.getElementById("tot");
+totalValue.innerHTML = sum;
+}	
 
 
